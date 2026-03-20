@@ -12,13 +12,9 @@ app = FastAPI()
 
 # Security: Set this in your .env file
 CRON_SECRET = os.getenv("CRON_SECRET", "my_super_secret_key_123")
-print(f"CRON_SECRET: {CRON_SECRET}")
-
-
 
 # Now this will fetch the real value from .env
 DATABASE_URL = os.getenv("DATABASE_URL")
-print(f"DATABASE_URL: {DATABASE_URL}")
 
 @app.post("/cron/daily-performance-check")
 def daily_performance_check(api_key: str, db: Session = Depends(get_db)):

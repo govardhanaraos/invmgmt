@@ -32,6 +32,10 @@ def get_live_performance(investments):
             # Fetch live NAV using the AMFI code
             quote = mf.get_scheme_quote(inv.amfi_code)
             live_nav = Decimal(quote['nav'])
+            print("-------------------------------")
+            print(f"inv.amfi_code: {inv.amfi_code}")
+            print(f"inv.fund_name: {inv.fund_name}")
+            print(f"inv.quote: {inv.quote}")
 
             # Value = NAV * Units (If units aren't stored, we estimate change since purchase)
             if inv.units_held:
@@ -39,6 +43,8 @@ def get_live_performance(investments):
             else:
                 # Fallback: estimate based on simplified percentage tracking
                 current_market_value += inv.amount * Decimal('1.02')
+            print(f"current_market_value: {current_market_value}")
+            print("-------------------------------")
         except:
             current_market_value += inv.amount  # Fallback to cost if API fails
 
