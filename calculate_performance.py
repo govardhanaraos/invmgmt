@@ -26,6 +26,9 @@ def get_live_performance(investments):
     current_market_value = Decimal('0.0')
 
     for inv in investments:
+        if inv.status != 'EXECUTED':
+            continue
+
         total_invested += inv.amount
 
         try:
